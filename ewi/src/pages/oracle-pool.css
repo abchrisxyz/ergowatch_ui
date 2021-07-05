@@ -1,0 +1,17 @@
+.oracle-pool-wrapper {
+  display: grid;
+  overflow-y: scroll;
+}
+
+.oracle-stats ul {
+  padding: 0;
+}
+
+li.oracle-stats-row {
+  list-style-type: none;
+  display: flex;
+  height: 50px;
+  gap: 15px;
+  padding-bottom: 10px;
+  /* display: none; */
+}

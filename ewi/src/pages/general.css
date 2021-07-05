@@ -1,0 +1,5 @@
+.general-wrapper {
+  display: grid;
+  gap: 15px;
+  padding-top: 28px;
+}

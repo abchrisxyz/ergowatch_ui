@@ -1,0 +1,23 @@
+.oracle-pools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: start;
+  gap: 24px;
+}
+
+.oracle-pool-preview {
+  width: 200px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255 255 255);
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1);
+  color: var(--text-color)
+}
+
+.oracle-pools a {
+  text-decoration: none;
+}
