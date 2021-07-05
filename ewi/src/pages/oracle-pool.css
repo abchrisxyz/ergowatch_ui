@@ -12,6 +12,4 @@ li.oracle-stats-row {
   display: flex;
   height: 50px;
   gap: 15px;
-  padding-bottom: 10px;
-  /* display: none; */
 }
