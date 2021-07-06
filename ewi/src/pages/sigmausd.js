@@ -6,7 +6,7 @@ const SigmaUSD = () => {
     <main>
       <h1>SigmaUSD</h1>
       <BreadCrumbs>
-        <Link to="/" exact>Home</Link>
+        <Link to="/">Home</Link>
         <Link to="/sigmausd">SigmaUSD</Link>
       </BreadCrumbs>
     </main>

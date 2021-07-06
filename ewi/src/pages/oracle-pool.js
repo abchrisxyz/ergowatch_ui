@@ -57,7 +57,7 @@ const OraclePool = () => {
     <main>
       <h1>{pair} Oracle Pool</h1>
       <BreadCrumbs>
-        <Link to="/" exact>Home</Link>
+        <Link to="/">Home</Link>
         <Link to="/oracle-pools">Oracle Pools</Link>
         <Link to="/oracle-pools/{pair}">{pair}</Link>
       </BreadCrumbs>

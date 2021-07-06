@@ -21,7 +21,7 @@ const OraclePools = () => {
     <main>
       <h1>Oracle Pools</h1>
       <BreadCrumbs>
-        <Link to="/" exact>Home</Link>
+        <Link to="/">Home</Link>
         <Link to="/oracle-pools">Oracle Pools</Link>
       </BreadCrumbs>
       <div className="oracle-pools">
