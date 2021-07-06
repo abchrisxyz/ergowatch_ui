@@ -21,13 +21,14 @@ const OracleStatsRow = ({ id, address, commits, acceptanceRate, lastCommit }) =>
 
 const OracleStats = ({ data }) => {
   if (!data) return "";
+
   const rows = data.map((r, idx) =>
     <OracleStatsRow
       key={idx}
       id={idx + 1}
       address={r.address}
       commits={r.commits}
-      acceptanceRate={r.accepted_commits / r.commits}
+      acceptanceRate={r.commits > 0 ? r.accepted_commits / r.commits : "-"}
       lastCommit={r.last_commit}
     />
   )
