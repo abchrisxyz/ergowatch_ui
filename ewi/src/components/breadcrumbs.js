@@ -1,15 +1,16 @@
 import './breadcrumbs.css';
 
 function wrapItems(items) {
-  return items.map((item, idx) => <li key={idx}>{item}</li>);
+  return items.map((item) => <li>{item}</li>);
 }
 
 function addSeparators(items) {
-  return items.reduce((acc, current, index) => {
-    if (index < items.length - 1) {
-      acc = acc.concat(current, <li className="bc-sep">&gt;</li>);
+  return items.reduce((acc, item, idx) => {
+    const wrapped_item = <li key={idx}>{item}</li>;
+    if (idx < items.length - 1) {
+      acc = acc.concat(wrapped_item, <li key={`sep-${idx}`} className="bc-sep">&gt;</li>);
     } else {
-      acc.push(current);
+      acc.push(wrapped_item);
     }
     return acc;
   }, []);
