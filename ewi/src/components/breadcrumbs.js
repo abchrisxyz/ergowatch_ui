@@ -1,9 +1,5 @@
 import './breadcrumbs.css';
 
-function wrapItems(items) {
-  return items.map((item) => <li>{item}</li>);
-}
-
 function addSeparators(items) {
   return items.reduce((acc, item, idx) => {
     const wrapped_item = <li key={idx}>{item}</li>;
@@ -19,7 +15,7 @@ function addSeparators(items) {
 const BreadCrumbs = ({ children }) => {
   return (
     <ol className="breadcrumbs">
-      {addSeparators(wrapItems(children))}
+      {addSeparators(children)}
     </ol>
   )
 };
