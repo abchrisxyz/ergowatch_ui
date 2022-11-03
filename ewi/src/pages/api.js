@@ -39,12 +39,12 @@ const API = () => {
             Documentation is available in Swagger or Redoc format:
           </p>
           <div className="buttons">
-            <a href="https://ergo.watch/api/v0/docs">
+            <a href="https://api.ergo.watch/docs">
               <div className="button">
                 Swagger
               </div>
             </a>
-            <a href="https://ergo.watch/api/v0/redoc">
+            <a href="https://api.ergo.watch/redoc">
               <div className="button">
                 Redoc
               </div>
