@@ -4,7 +4,7 @@ import SeriesChart from "./common/series-chart";
 import MetricTemplate from "./common/template";
 import ChangeSummary from "./common/change-summary";
 
-import './addresses-chart.css';
+import './contracts-chart.css';
 
 const seriesOptions = [
   { label: "Total", value: "gt_0", index: 0, color: colors.black },
@@ -21,26 +21,26 @@ const seriesOptions = [
 ];
 
 
-const Addresses = () => {
-  const id = "addresses";
+const MiningContracts = () => {
+  const id = "contracts";
   return (
-    <MetricTemplate id={id} name="Addresses">
+    <MetricTemplate id={id} name="Mining Contracts">
       <Card>
         <SeriesChart
           id={id}
-          api="/metrics/addresses/p2pk"
+          api="/metrics/addresses/miners"
           seriesOptions={seriesOptions}
           initialOptions={[0, 1]}
-          yLabel="Wallet Addresses"
+          yLabel="Mining Contract Addresses"
           ySize={70}
         />
       </Card>
       <Card title="Description">
-        <p>Number of unique P2PK addresses by minimum balance.</p>
+        <p>Number of unique mining contract addresses by minimum balance.</p>
       </Card>
-      <Card title="Change Summary">
+      <Card title="Summary">
         <ChangeSummary
-          api="/metrics/summary/addresses/p2pk"
+          api="/metrics/summary/addresses/miners"
           headers={["Minimal balance", "Current", "1 Day", "1 Week", "4 Weeks", "6 Months ", "1 Year"]}
           fields={["current", "diff_1d", "diff_1w", "diff_4w", "diff_6m", "diff_1y"]}
           keys={[
@@ -57,7 +57,7 @@ const Addresses = () => {
             "ge_1m",
           ]}
           labels={{
-            total: "All addresses",
+            total: "Total",
             ge_0p001: "0.001 ERG",
             ge_0p01: "0.01 ERG",
             ge_0p1: "0.1 ERG",
@@ -75,4 +75,4 @@ const Addresses = () => {
   )
 }
 
-export default Addresses;
+export default MiningContracts;

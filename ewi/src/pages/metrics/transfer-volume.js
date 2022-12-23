@@ -5,7 +5,9 @@ import MetricTemplate from "./common/template";
 
 
 const seriesOptions = [
-  { label: "Transfer volume", value: "transferred_volume", index: 0, color: colors.orange },
+  { label: "Daily 1d", value: "daily_1d", index: 0, color: colors.orange, scale: 10 ** -9 },
+  { label: "Daily 7d", value: "daily_7d", index: 0, color: colors.green, scale: 10 ** -9 },
+  { label: "Daily 28d", value: "daily_28d", index: 0, color: colors.blue, scale: 10 ** -9 },
 ];
 
 const TransferVolume = () => {
@@ -14,7 +16,7 @@ const TransferVolume = () => {
     <MetricTemplate id={id} name="Transfer Volume">
       <Card>
         <SeriesChart
-          api="/metrics/transfer-volume/series"
+          api="/metrics/volume"
           seriesOptions={seriesOptions}
           initialOptions={[0,]}
           markLast={colors.blue}
@@ -23,10 +25,8 @@ const TransferVolume = () => {
         />
       </Card>
       <Card title="Description">
-        <p>The amount of ERG transfered between different addresses, excluding coinbase emission.</p>
-
-        <p>Each datapoint on the graph represents the preceding 24 hours, except for the last one showing current total since previous datapoint.</p>
-
+        <p>The amount of ERG transfered between different addresses over the past 1, 7, or 28 days prior.</p>
+        <p>Does not include coinbase emission.</p>
       </Card>
     </MetricTemplate>
   )

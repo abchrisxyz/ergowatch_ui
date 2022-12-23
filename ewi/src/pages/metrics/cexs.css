@@ -1,22 +1,22 @@
 .cex-list {
   display: flex;
   flex-direction: column;
-  row-gap: 1em; 
+  row-gap: 1em;
 }
 
 .cex-list .rows {
   display: flex;
   flex-direction: column;
-  row-gap: 1em; 
+  row-gap: 1em;
 }
 
 .cex-list .header {
   font-weight: bold;
 }
 
-.cex-list .rows > div {
+.cex-list .rows>div {
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-columns: 2fr 1fr 2fr;
   max-width: 300px;
   column-gap: 12px;
   align-items: end;

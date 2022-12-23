@@ -5,7 +5,9 @@ import MetricTemplate from "./common/template";
 
 
 const seriesOptions = [
-  { label: "Transactions", value: "transactions", index: 0, color: colors.orange },
+  { label: "Daily 1d", value: "daily_1d", index: 0, color: colors.orange },
+  { label: "Daily 7d", value: "daily_7d", index: 0, color: colors.green },
+  { label: "Daily 28d", value: "daily_28d", index: 0, color: colors.blue },
 ];
 
 const Transactions = () => {
@@ -14,7 +16,7 @@ const Transactions = () => {
     <MetricTemplate id={id} name="Transactions">
       <Card>
         <SeriesChart
-          api="/metrics/transactions/series"
+          api="/metrics/transactions"
           seriesOptions={seriesOptions}
           initialOptions={[0,]}
           yLabel="Transactions / 24h"
@@ -23,8 +25,7 @@ const Transactions = () => {
         />
       </Card>
       <Card title="Description">
-        <p>Total number of transactions per day.</p>
-        <p>Each datapoint on the graph represents the preceding 24 hours, except for the last one showing current count since previous datapoint.</p>
+        <p>Total number of transactions per day over the past 1, 7, or 28 days prior.</p>
       </Card>
     </MetricTemplate>
   )

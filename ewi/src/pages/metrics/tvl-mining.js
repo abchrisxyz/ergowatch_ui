@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import Card from "../../components/card";
 import colors from "../../config/colors";
-import { AddressLink } from "../../components/links";
 import SeriesChart from "./common/series-chart";
 import MetricTemplate from "./common/template";
 import ChangeSummary from "./common/change-summary";
@@ -16,16 +15,16 @@ const seriesOptions = [
 ];
 
 const Distribution = () => {
-  const id = "tvl";
+  const id = "mtvl";
 
   const [relative, setRelative] = useState(true);
 
   return (
-    <MetricTemplate id={id} name="Contracts Distribution">
+    <MetricTemplate id={id} name="Mining Contracts Distribution">
 
       <Card>
         <SeriesChart
-          api="/metrics/supply/distribution/contracts"
+          api="/metrics/supply/distribution/miners"
           seriesOptions={seriesOptions}
           initialOptions={[1,]}
           yLabel={relative ? "% of Circ. Supply" : "ERG"}
@@ -38,11 +37,11 @@ const Distribution = () => {
         />
       </Card>
       <Card title="Description">
-        <p>ERG supply in top <i>x</i> contract addresses, excluding (re)emission contracts, mining contracts and the EF <AddressLink address="4L1ktFSzm3SH1UioDuUf5hyaraHird4D2dEACwQ1qHGjSKtA6KaNvSzRCZXZGf9jkfNAEC1SrYaZmCuvb2BKiXk5zW9xuvrXFT7FdNe2KqbymiZvo5UQLAm5jQY8ZBRhTZ4AFtZa1UF5nd4aofwPiL7YkJuyiL5hDHMZL1ZnyL746tHmRYMjAhCgE7d698dRhkdSeVy">treasury</AddressLink></p>
+        <p>ERG supply in top <i>x</i> mining contract addresses.</p>
       </Card>
       <Card title="Change Summary">
         <ChangeSummary
-          api="/metrics/summary/supply/distribution/contracts"
+          api="/metrics/summary/supply/distribution/miners"
           variant={relative ? "relative" : "absolute"}
           headers={["Addresses", "Last", "1 Day", "1 Week", "4 Weeks", "6 Months ", "1 Year"]}
           fields={["current", "diff_1d", "diff_1w", "diff_4w", "diff_6m", "diff_1y"]}

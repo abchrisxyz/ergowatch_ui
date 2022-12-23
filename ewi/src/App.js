@@ -13,8 +13,11 @@ import Metrics from './pages/metrics';
 import Age from './pages/metrics/age';
 import Addresses from './pages/metrics/addresses';
 import Contracts from './pages/metrics/contracts';
+import MiningContracts from './pages/metrics/mining-contracts';
+import Composition from './pages/metrics/composition';
 import Distribution from './pages/metrics/distribution';
 import TVL from './pages/metrics/tvl';
+import MTVL from './pages/metrics/tvl-mining';
 import Cexs from './pages/metrics/cexs';
 import TransferVolume from './pages/metrics/transfer-volume';
 import Transactions from './pages/metrics/transactions';
@@ -96,12 +99,19 @@ function App() {
               <NavLink onClick={() => hideNav()} exact to="/emission">Emission</NavLink>
               <NavLink onClick={() => hideNav()} exact to="/metrics">Metrics</NavLink>
               <MatchLocation location="/metrics">
-                <NavLink onClick={() => hideNav()} exact className="sub-navlink" to="/metrics/addresses">Addresses</NavLink>
+                <h5 className='first'>Addresses</h5>
+                <NavLink onClick={() => hideNav()} exact className="sub-navlink" to="/metrics/addresses">P2PK</NavLink>
                 <NavLink onClick={() => hideNav()} exact className="sub-navlink" to="/metrics/contracts">Contracts</NavLink>
-                <NavLink onClick={() => hideNav()} exact className="sub-navlink" to="/metrics/distribution">Distribution</NavLink>
-                <NavLink onClick={() => hideNav()} exact className="sub-navlink" to="/metrics/tvl">TVL</NavLink>
+                <NavLink onClick={() => hideNav()} exact className="sub-navlink" to="/metrics/mining-contracts">Mining Contracts</NavLink>
+                <h5>Supply Distribution</h5>
+                <NavLink onClick={() => hideNav()} exact className="sub-navlink" to="/metrics/distribution">P2PK</NavLink>
+                <NavLink onClick={() => hideNav()} exact className="sub-navlink" to="/metrics/tvl">Contracts</NavLink>
+                <NavLink onClick={() => hideNav()} exact className="sub-navlink" to="/metrics/mtvl">Mining Contracts</NavLink>
+                <h5>Supply Stats</h5>
+                <NavLink onClick={() => hideNav()} exact className="sub-navlink" to="/metrics/supply-composition">Supply Composition</NavLink>
                 <NavLink onClick={() => hideNav()} exact className="sub-navlink" to="/metrics/cexs">Exchanges</NavLink>
-                <NavLink onClick={() => hideNav()} exact className="sub-navlink" to="/metrics/age">Supply Age</NavLink>
+                {/* <NavLink onClick={() => hideNav()} exact className="sub-navlink" to="/metrics/age">Supply Age</NavLink> */}
+                <h5>Usage</h5>
                 <NavLink onClick={() => hideNav()} exact className="sub-navlink" to="/metrics/transfer-volume">Transfer Volume</NavLink>
                 <NavLink onClick={() => hideNav()} exact className="sub-navlink" to="/metrics/transactions">Transactions</NavLink>
                 <NavLink onClick={() => hideNav()} exact className="sub-navlink" to="/metrics/utxos">UTXO's</NavLink>
@@ -130,14 +140,23 @@ function App() {
             <Route path="/metrics/cexs">
               <Cexs />
             </Route>
+            <Route path="/metrics/supply-composition">
+              <Composition />
+            </Route>
             <Route path="/metrics/contracts">
               <Contracts />
+            </Route>
+            <Route path="/metrics/mining-contracts">
+              <MiningContracts />
             </Route>
             <Route path="/metrics/distribution">
               <Distribution />
             </Route>
             <Route path="/metrics/TVL">
               <TVL />
+            </Route>
+            <Route path="/metrics/mtvl">
+              <MTVL />
             </Route>
             <Route path="/metrics/transfer-volume">
               <TransferVolume />

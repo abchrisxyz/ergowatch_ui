@@ -4,6 +4,7 @@ const colors = {
   blue: "#2f5ef6",
   green: "#02a772",
   pink: "#f1009d",
+  purple: "#800080",
 }
 
 export default colors;

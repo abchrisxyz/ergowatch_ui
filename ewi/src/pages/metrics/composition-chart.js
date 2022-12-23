@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { MultiSelect } from "react-multi-select-component"
 
-import UPlot from "../../../components/uplot";
-import { Selector, SelectorOption } from "../../../components/controls/selector";
-import { API2_ROOT } from "../../../config";
+import UPlot from "../../components/uplot";
+import { Selector, SelectorOption } from "../../components/controls/selector";
+import { API2_ROOT } from "../../config";
 
-import './series-chart.css';
+import './common/series-chart.css';
 
 
-const SeriesChart = ({ id, api, seriesOptions, initialOptions, toFixed = 0, relative = false, relativeTo = null, setRelative, yLabel = null, ySize = 80, units = '', incrs = undefined }) => {
+const SeriesChart = ({ id, api, seriesOptions, initialOptions, toFixed = 0, relative = false, setRelative, yLabel = null, ySize = 80, units = '' }) => {
   const [window, setWindow] = useState('30d');
   const [logScale, setLogScale] = useState(false);
   const [data, setData] = useState(undefined);
@@ -46,6 +46,15 @@ const SeriesChart = ({ id, api, seriesOptions, initialOptions, toFixed = 0, rela
         seriesOptions.filter(so => so.scale !== undefined).forEach(so => {
           data[so.value] = data[so.value].map(v => v * so.scale);
         });
+        // Compute total to calculate relative values
+        // Recent values for CEX deposits can be negative (deposits addresses get detected when claimed
+        // by CEX, i.e. spending tx, while funding txs won't be accounted for until next repair session)
+        // The negative deposit value balance out what's still in p2pk but will be assigned to deposits
+        // once repaired.
+        // So total is computed as sum of all terms.
+        // Then we cap deposit values to 0 for cosmetics.
+        data["total"] = data.p2pks.map((_, i) => data.p2pks[i] + data.cex_main[i] + data.cex_deposits[i] + data.contracts[i] + data.miners[i] + data.treasury[i]);
+        // data["cex_deposits"] = data["cex_deposits"].map(v => Math.max(v, 0));
         setData(data);
       })
       .catch(err => console.error(err));
@@ -53,10 +62,9 @@ const SeriesChart = ({ id, api, seriesOptions, initialOptions, toFixed = 0, rela
 
   if (data === undefined) return <div style={{ height: "610px" }}>Loading...</div>;
 
-  const filteredData = relative && relativeTo ? [
+  const filteredData = relative ? [
     data.timestamps,
-    // ...selectedOpts.map((opt) => data[opt.value].map((v, i) => v / data[relativeTo][i] * 100)),
-    ...selectedOpts.map((opt) => data[opt.value].map((v, i) => v / Math.max(data[relativeTo][i], 1) * 100)),
+    ...selectedOpts.map((opt) => data[opt.value].map((v, i) => v / data.total[i] * 100)),
     data.ergusd,
   ] : [
     data.timestamps,
@@ -95,7 +103,6 @@ const SeriesChart = ({ id, api, seriesOptions, initialOptions, toFixed = 0, rela
         labelFont: "14px Arial",
         labelSize: 20,
         values: (u, vals) => vals.map(v => v !== null ? Number(v.toFixed(toFixed)).toLocaleString('en') + units : ''),
-        incrs: incrs,
       },
       {
         label: "ERG / USD",
@@ -133,7 +140,7 @@ const SeriesChart = ({ id, api, seriesOptions, initialOptions, toFixed = 0, rela
         {seriesOptions.length < 2 ? null :
           <MultiSelect
             className="series-select"
-            options={seriesOptions.filter(so => so.index >= 0)}
+            options={seriesOptions}
             value={selectedOpts}
             onChange={sortAndSetSelectedOpts}
             // labelledBy="Select"
@@ -142,12 +149,10 @@ const SeriesChart = ({ id, api, seriesOptions, initialOptions, toFixed = 0, rela
             ClearIcon=''
           />
         }
-        {!relativeTo ? null :
-          <Selector>
-            <SelectorOption label='Absolute' active={!relative} onClick={() => setRelative(false)} />
-            <SelectorOption label='Relative' active={relative} onClick={() => setRelative(true)} />
-          </Selector>
-        }
+        <Selector>
+          <SelectorOption label='Absolute' active={!relative} onClick={() => setRelative(false)} />
+          <SelectorOption label='Relative' active={relative} onClick={() => setRelative(true)} />
+        </Selector>
         <Selector>
           <SelectorOption label='Linear' active={!logScale} onClick={() => setLogScale(false)} />
           <SelectorOption label='Log' active={logScale} onClick={() => setLogScale(true)} />

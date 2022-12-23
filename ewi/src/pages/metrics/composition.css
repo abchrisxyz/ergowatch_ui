@@ -1,0 +1,22 @@
+.categories {
+  display: grid;
+  grid-template-columns: max-content;
+  column-gap: 1em;
+  row-gap: 0.25em;
+  /* padding-left: 1em; */
+}
+
+.categories div:nth-child(odd) {
+  font-weight: bold;
+}
+
+.categories {
+  max-width: 300px;
+}
+
+@media (min-width: 713px) {
+  .categories {
+    grid-template-columns: max-content max-content;
+    max-width: none;
+  }
+}

@@ -7,17 +7,17 @@ import ChangeSummary from "./common/change-summary";
 import './contracts-chart.css';
 
 const seriesOptions = [
-  { label: "Total", value: "total", index: 0, color: colors.black },
-  { label: ">0.001", value: "gte_0_001", index: 1, color: colors.orange },
-  { label: ">0.01", value: "gte_0_01", index: 2, color: colors.orange },
-  { label: ">0.1", value: "gte_0_1", index: 3, color: colors.orange },
-  { label: ">1", value: "gte_1", index: 4, color: colors.green },
-  { label: ">10", value: "gte_10", index: 5, color: colors.green },
-  { label: ">100", value: "gte_100", index: 6, color: colors.green },
-  { label: ">1k", value: "gte_1k", index: 7, color: colors.blue },
-  { label: ">10k", value: "gte_10k", index: 8, color: colors.blue },
-  { label: ">100k", value: "gte_100k", index: 9, color: colors.blue },
-  { label: ">1M", value: "gte_1m", index: 10, color: colors.pink },
+  { label: "Total", value: "gt_0", index: 0, color: colors.black },
+  { label: ">0.001", value: "ge_0p001", index: 1, color: colors.orange },
+  { label: ">0.01", value: "ge_0p01", index: 2, color: colors.orange },
+  { label: ">0.1", value: "ge_0p1", index: 3, color: colors.orange },
+  { label: ">1", value: "ge_1", index: 4, color: colors.green },
+  { label: ">10", value: "ge_10", index: 5, color: colors.green },
+  { label: ">100", value: "ge_100", index: 6, color: colors.green },
+  { label: ">1k", value: "ge_1k", index: 7, color: colors.blue },
+  { label: ">10k", value: "ge_10k", index: 8, color: colors.blue },
+  { label: ">100k", value: "ge_100k", index: 9, color: colors.blue },
+  { label: ">1M", value: "ge_1m", index: 10, color: colors.pink },
 ];
 
 
@@ -28,7 +28,7 @@ const Contracts = () => {
       <Card>
         <SeriesChart
           id={id}
-          api="/metrics/contracts/series"
+          api="/metrics/addresses/contracts"
           seriesOptions={seriesOptions}
           initialOptions={[0, 1]}
           yLabel="Contract Addresses"
@@ -37,38 +37,38 @@ const Contracts = () => {
       </Card>
       <Card title="Description">
         <p>Number of unique contract addresses by minimum balance.</p>
-        <p>Updates every 24h.</p>
+        <p>Does not include mining contracts.</p>
       </Card>
       <Card title="Summary">
         <ChangeSummary
-          id={id}
+          api="/metrics/summary/addresses/contracts"
           headers={["Minimal balance", "Current", "1 Day", "1 Week", "4 Weeks", "6 Months ", "1 Year"]}
-          fields={["latest", "diff_1d", "diff_1w", "diff_4w", "diff_6m", "diff_1y"]}
+          fields={["current", "diff_1d", "diff_1w", "diff_4w", "diff_6m", "diff_1y"]}
           keys={[
             "total",
-            "gte_0_001",
-            "gte_0_01",
-            "gte_0_1",
-            "gte_1",
-            "gte_10",
-            "gte_100",
-            "gte_1k",
-            "gte_10k",
-            "gte_100k",
-            "gte_1m",
+            "ge_0p001",
+            "ge_0p01",
+            "ge_0p1",
+            "ge_1",
+            "ge_10",
+            "ge_100",
+            "ge_1k",
+            "ge_10k",
+            "ge_100k",
+            "ge_1m",
           ]}
           labels={{
             total: "Total",
-            gte_0_001: "0.001 ERG",
-            gte_0_01: "0.01 ERG",
-            gte_0_1: "0.1 ERG",
-            gte_1: "1 ERG",
-            gte_10: "10 ERG",
-            gte_100: "100 ERG",
-            gte_1k: "1k ERG",
-            gte_10k: "10k ERG",
-            gte_100k: "100k ERG",
-            gte_1m: "1M ERG",
+            ge_0p001: "0.001 ERG",
+            ge_0p01: "0.01 ERG",
+            ge_0p1: "0.1 ERG",
+            ge_1: "1 ERG",
+            ge_10: "10 ERG",
+            ge_100: "100 ERG",
+            ge_1k: "1k ERG",
+            ge_10k: "10k ERG",
+            ge_100k: "100k ERG",
+            ge_1m: "1M ERG",
           }}
         />
       </Card>
