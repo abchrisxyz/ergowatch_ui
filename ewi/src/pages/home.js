@@ -35,6 +35,9 @@ const Home = () => {
         -
         <a href="https://explorer.ergoplatform.com/en/">Ergo Explorer</a>
       </div>
+      <div className="tips">
+        Tips: <span className="address">9g7NbnVXZBFLqCMZVEKRVZRGNuCVrWFk8pZXwFEhs4bXpsQ7YUU</span>
+      </div>
     </main >
   );
 }
