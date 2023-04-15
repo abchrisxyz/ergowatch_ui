@@ -76,7 +76,7 @@ const cexLogos = {
   gate: 'https://www.gate.io/favicon.ico',
   kucoin: 'https://assets.staticimg.com/cms/media/7AV75b9jzr9S8H3eNuOuoqj8PwdUjaDQGKGczGqTS.png',
   tradeogre: '/tradeogre-favicon.ico',
-  huobi: 'https://www.huobi.com/favicon.ico?1125',
+  huobi: 'https://hbg-fed-static-prd.hbfile.net/enhome/favicon.ico',
   probit: 'https://static-landing.probit.com/favicon.ico',
 };
 
